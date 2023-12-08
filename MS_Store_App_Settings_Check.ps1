@@ -43,8 +43,10 @@ if (($InstallService.Status -eq 'Running') -and ($InstallService.StartType -eq '
     }
 else{ 
     Write-Host "Microsoft Store Install Service: ERROR" -ForegroundColor Red
-    Write-Host "Status: $($InstallService.Status)
-    Write-Host "Startup: $($InstallService.StartType)
+    Write-Host "Status: $($InstallService.Status)"
+    Write-Host "Startup: $($InstallService.StartType)"
+    #Set-Service -Name 'InstallService' -StartupType Automatic
+    #Restart-Service -Name 'InstallService' -Force
     }
 
 $WindowsUpdateService = Get-Service -Name 'wuauserv'
@@ -54,5 +56,7 @@ if (($WindowsUpdateService.Status -eq 'Running') -and ($WindowsUpdateService.Sta
 else{ 
     Write-Host "Windows Update Service: ERROR" -ForegroundColor Red
     Write-Host "Status: $($WindowsUpdateService.Status)."
-    Write-Host "Startup: $($WindowsUpdateService.StartType)"}
-    
+    Write-Host "Startup: $($WindowsUpdateService.StartType)"
+    #Set-Service -Name 'wuauserv' -StartupType Automatic
+    #Restart-Service -Name 'wuauserv' -Force
+    }
